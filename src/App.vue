@@ -1,29 +1,35 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <v-header></v-header>
+    <div class="tab">
+      <router-link to="/">商品</router-link>
+      <router-link to="/ratings">评论</router-link>
+      <router-link to="/seller">商家</router-link>
     </div>
-    <router-view/>
+    <router-view></router-view>
+    <div class="footer">this is footer</div>
   </div>
 </template>
 
-<style lang="less">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+  import header from './components/header/header'
+
+  export default {
+    name: 'app',
+    components: {
+      'v-header': header
     }
   }
-}
+</script>
+
+<style lang="less" scope>
+  .tab {
+    display: flex;
+    justify-content: space-between;
+
+    a {
+
+    }
+
+  }
 </style>
