@@ -12,24 +12,22 @@
 </template>
 
 <script>
-  import header from './components/header/header'
+import header from "./components/header/header";
 
-  export default {
-    name: 'app',
-    components: {
-      'v-header': header
-    }
+export default {
+  name: "app",
+  components: {
+    "v-header": header
   }
+};
 </script>
 
 <style lang="less" scope>
-  .tab {
-    display: flex;
-    justify-content: space-between;
+.tab {
+  display: flex;
+  justify-content: space-between;
 
-    a {
-
-    }
-
+  a {
   }
+}
 </style>
