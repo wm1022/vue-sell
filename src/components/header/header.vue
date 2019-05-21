@@ -9,11 +9,15 @@
           <span class="icon"></span>
           <em>{{seller.name}}</em>
         </p>
-        <p class="delivery">{{seller.description}} / {{seller.deliveryTime}}</p>
+        <p class="delivery">{{seller.description}} / {{seller.deliveryTime}}分钟送达</p>
         <p class="supports" v-if="seller.supports">
           <span class="icon"></span>
           <span class="text">{{seller.supports[0].description}}</span>
         </p>
+      </div>
+      <div class="supportsNum" v-if="seller.supports">
+        <span>{{seller.supports.length}}个</span>
+        <i class="iconfont icon-arrow_lift">&#xe621;</i>
       </div>
     </div>
     <div class="bulletin-wrapper">
@@ -30,6 +34,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+@import '../../common/style/reset.css';
 .header {
 
   .content-wrapper {
