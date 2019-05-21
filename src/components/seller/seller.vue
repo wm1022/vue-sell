@@ -1,6 +1,6 @@
 <template>
 	<div class="goods">
-    商品
+    商家
   </div>
 </template>
 <script>

@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 
 // 导入reset
-import './style/reset.css'
+import 'common/style/reset.css'
 
 Vue.config.productionTip = false
 
