@@ -1,0 +1,26 @@
+.cf() {
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+.text-overflow () {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bg-image(@src) {
+  // @media screen and (-webkit-min-pixel-ration: 1) {
+    background: url('@{src}@2x.png');
+    background-size: cover;
+  // }
+  @media screen and (-webkit-min-pixel-ration: 2) {
+    background: url('@{src}@2x.png');
+  }
+  @media screen and (-webkit-min-pixel-ration: 3) {
+    background: url('@{src}@3x.png');
+  }
+}
