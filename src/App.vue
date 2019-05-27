@@ -7,7 +7,7 @@
       <router-link to="/seller">商家</router-link>
     </div>
     <router-view></router-view>
-    <div class="footer">this is footer</div>
+    <!-- <div class="footer">this is footer</div> -->
   </div>
 </template>
 
@@ -38,10 +38,30 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+@import './common/style/index.less';
+#app {
+  position: relative;
+  height: 100%;
+}
 .tab {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
+  height: 80px;
+  .border-1px(bottom, rgba(7, 17, 27, .1));
+
+  a {
+    font-size:28px;
+    color:rgb(77, 85, 93);
+    line-height: 28px;
+
+    &.router-link-exact-active {
+      color: rgb(240, 20, 20);
+    }
+
+  }
+
 }
 </style>
 
