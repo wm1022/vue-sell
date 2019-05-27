@@ -17,7 +17,7 @@
       </div>
       <div class="supportsNum" v-if="seller.supports">
         <span>{{seller.supports.length}}个</span>
-        <i class="iconfont icon-arrow_lift">&#xe621;</i>
+        <i class="iconfont">&#xe625;</i>
       </div>
     </div>
     <div class="bulletin-wrapper">
@@ -34,7 +34,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-@import '../../common/style/reset.css';
+@import '../../common/style/index.less';
 .header {
 
   .content-wrapper {
@@ -78,6 +78,10 @@ export default {
         line-height:24px;
       }
 
+    }
+
+    .supportsNum .iconfont {
+      color: #fff;
     }
 
   }
