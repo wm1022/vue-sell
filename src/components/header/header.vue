@@ -6,6 +6,7 @@
       </div>
       <div class="info" v-if="seller.supports">
         <p class="name">
+          <span class="brand"></span>
           <em>{{seller.name}}</em>
         </p>
         <p class="delivery">{{seller.description}} / {{seller.deliveryTime}}分钟送达</p>
@@ -14,28 +15,47 @@
           <span class="text">{{seller.supports[0].description}}</span>
         </p>
       </div>
-      <div class="supportsNum" v-if="seller.supports">
+      <div class="supportsNum" v-if="seller.supports" @click="openHeaderDetail">
         <span>{{seller.supports.length}}个</span>
         <i class="iconfont icon-keyboard_arrow_right"></i>
       </div>
     </div>
-    <div class="bulletin-wrapper">
+    <div class="bulletin-wrapper" @click="openHeaderDetail">
       <span class="media"></span>
       <span class="bulletin">{{seller.bulletin}}</span>
       <i class="iconfont icon-keyboard_arrow_right"></i>
     </div>
     <div class="bg"><img :src="seller.avatar" alt=""></div>
+    <!-- css sticky布局 -->
+    <transition name="fade">
+      <header-detail v-show="ifHeaderDetail" :seller="seller" :ifHeaderDetail.sync="ifHeaderDetail"></header-detail>
+    </transition>
   </div>
 </template>
 <script>
   import supports from 'components/supports/supports'
+  import star from 'components/star/star'
+  import headerDetail from 'components/headerDetail/headerDetail'
   export default {
     name: 'v-header',
     props: ['seller'],
+    data () {
+      return {
+        ifHeaderDetail: false
+      }
+    },
     components: {
-      supports
+      supports,
+      star,
+      headerDetail
+    },
+    methods: {
+      openHeaderDetail: function () {
+        this.ifHeaderDetail = true
+      }
     }
   }
+
 </script>
 <style lang="less" scoped>
   @import '../../common/style/index.less';
@@ -51,6 +71,7 @@
 
       .avatar {
         float: left;
+
         img {
           width: 128px;
           height: 128px;
@@ -65,8 +86,17 @@
         padding-top: 4px;
 
         .name {
+          display: flex;
+          align-items: center;
+          .brand {
+            display: inline-block;
+            width: 60px;
+            height: 36px;
+            .bg-image('../../common/images/brand')
+          }
 
           em {
+            padding-left: 12px;
             font-size: 32px;
             font-style: normal;
             font-weight: bold;
@@ -163,5 +193,5 @@
     }
 
   }
-
 </style>
+

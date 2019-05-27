@@ -13,14 +13,122 @@
 }
 
 .bg-image(@src) {
-  // @media screen and (-webkit-min-pixel-ration: 1) {
-    background: url('@{src}@2x.png');
-    background-size: cover;
-  // }
+  background: url('@{src}@2x.png');
+  background-size: cover;
+
   @media screen and (-webkit-min-pixel-ration: 2) {
     background: url('@{src}@2x.png');
   }
+
   @media screen and (-webkit-min-pixel-ration: 3) {
     background: url('@{src}@3x.png');
   }
+}
+
+.border-1px(@direction, @color) when (@direction = top) {
+  position: relative;
+  border: none;
+
+  &:after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: '';
+    width: 100%;
+    height: 1px;
+    background-color: @color;
+
+    @media screen and (-webkit-min-device-pixel-ratio: 2) {
+      -webkit-transform: scaleY(0.5);
+      transform: scaleY(0.5);
+    }
+  
+    @media screen and (-webkit-min-device-pixel-ratio: 3) {
+      -webkit-transform: scaleY(0.33);
+      transform: scaleY(0.33);
+    }
+
+  }
+
+}
+
+.border-1px(@direction, @color) when (@direction = bottom) {
+  position: relative;
+  border: none;
+
+  &:after {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    content: '';
+    width: 100%;
+    height: 1px;
+    background-color: @color;
+
+    @media screen and (-webkit-min-device-pixel-ratio: 2) {
+      -webkit-transform: scaleY(0.5);
+      transform: scaleY(0.5);
+    }
+  
+    @media screen and (-webkit-min-device-pixel-ratio: 3) {
+      -webkit-transform: scaleY(0.33);
+      transform: scaleY(0.33);
+    }
+
+  }
+
+}
+
+.border-1px(@direction, @color) when (@direction = left) {
+  position: relative;
+  border: none;
+
+  &:after {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    content: '';
+    width: 1px;
+    height: 100%;
+    background-color: @color;
+
+    @media screen and (-webkit-min-device-pixel-ratio: 2) {
+      -webkit-transform: scaleX(0.5);
+      transform: scaleX(0.5);
+    }
+  
+    @media screen and (-webkit-min-device-pixel-ratio: 3) {
+      -webkit-transform: scaleX(0.33);
+      transform: scaleX(0.33);
+    }
+
+  }
+
+}
+
+.border-1px(@direction, @color) when (@direction = right) {
+  position: relative;
+  border: none;
+
+  &:after {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    content: '';
+    width: 1px;
+    height: 100%;
+    background-color: @color;
+
+    @media screen and (-webkit-min-device-pixel-ratio: 2) {
+      -webkit-transform: scaleX(0.5);
+      transform: scaleX(0.5);
+    }
+  
+    @media screen and (-webkit-min-device-pixel-ratio: 3) {
+      -webkit-transform: scaleX(0.33);
+      transform: scaleX(0.33);
+    }
+
+  }
+
 }
