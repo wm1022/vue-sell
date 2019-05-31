@@ -129,200 +129,198 @@
 
 </script>
 <style lang="less">
-  @import "../../common/style/index.less";
+@import "../../common/style/index.less";
 
-  .goods {
-    display: flex;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    padding-top: 349px;
-    padding-bottom: 92px;
-    box-sizing: border-box;
+.goods {
+  display: flex;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding-top: 349px;
+  padding-bottom: 92px;
+  box-sizing: border-box;
+  overflow: hidden;
+  z-index: 1;
+
+  .menu-wrapper {
+    position: relative;
+    flex: 0 0 160px;
+    width: 160px;
     overflow: hidden;
     z-index: 1;
 
-    .menu-wrapper {
-      position: relative;
-      flex: 0 0 160px;
-      width: 160px;
-      overflow: hidden;
-      z-index: 1;
+    .menu {
 
-      .menu {
+      li {
+        display: table;
+        width: 160px;
+        height: 108px;
+        padding: 0 24px;
+        font-size: 24px;
+        color: #666;
+        box-sizing: border-box;
+        background-color: #f3f5f7;
 
-        li {
-          display: table;
-          width: 160px;
-          height: 108px;
-          padding: 0 24px;
-          font-size: 24px;
-          color: #666;
-          box-sizing: border-box;
-          background-color: #f3f5f7;
+        &.current {
+          margin-top: -1px;
+          color: #07111b;
+          background-color: #fff;
+        }
 
-          &.current {
-            margin-top: -1px;
-            color: #07111b;
-            background-color: #fff;
-          }
+        p {
+          display: table-cell;
+          vertical-align: middle;
+          line-height: 28px;
+          .border-1px(bottom, rgba(7, 17, 27, 0.1));
+        }
 
-          p {
-            display: table-cell;
-            vertical-align: middle;
-            line-height: 28px;
-            .border-1px(bottom, rgba(7, 17, 27, 0.1));
-          }
+        .icon {
+          float: left;
+          line-height: 28px;
+        }
 
-          .icon {
-            float: left;
-            line-height: 28px;
-          }
-
-          .txt {
-            overflow: hidden;
-            line-height: 28px;
-          }
+        .txt {
+          overflow: hidden;
+          line-height: 28px;
         }
       }
-
     }
 
   }
 
-  .foods-wrapper {
-    width: 100%;
-    margin-left: -160px;
-    padding-left: 160px;
-    box-sizing: border-box;
+}
+
+.foods-wrapper {
+  width: 100%;
+  margin-left: -160px;
+  padding-left: 160px;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  .foods {
     overflow: hidden;
 
-    .foods {
-      overflow: hidden;
+    h4 {
+      padding: 15px 0 10px 28px;
+      font-size: 24px;
+      color: #93999f;
+      border-left: 4px solid #d9dde1;
+      background-color: #f3f5f7;
+    }
 
-      h4 {
-        padding: 15px 0 10px 28px;
-        font-size: 24px;
-        color: #93999f;
-        border-left: 4px solid #d9dde1;
-        background-color: #f3f5f7;
-      }
+    ul {
+      padding: 0 36px;
+      background-color: #fff;
 
-      ul {
-        padding: 0 36px;
-        background-color: #fff;
+      li {
+        position: relative;
+        display: flex;
+        padding: 36px 0;
+        .border-1px(bottom, rgba(7, 17, 27, .1));
 
-        li {
-          position: relative;
-          display: flex;
-          padding: 36px 0;
-          .border-1px(bottom, rgba(7, 17, 27, .1));
-
-          &:last-child {
-            &:after {
-              display: none;
-            }
+        &:last-child {
+          &:after {
+            display: none;
           }
+        }
 
-          .pic {
-            position: absolute;
-            top: 36px;
-            left: 0px;
-            flex-shrink: 0;
-            width: 114px;
-            height: 114px;
+        .pic {
+          position: absolute;
+          top: 36px;
+          left: 0px;
+          flex-shrink: 0;
+          width: 114px;
+          height: 114px;
 
-            img {
-              width: 100%;
-              height: 100%;
-            }
-
-          }
-
-          .txt {
+          img {
             width: 100%;
-            padding-left: 134px;
-            box-sizing: border-box;
-
-            .name {
-              width: 95%;
-              padding-top: 4px;
-              ;
-              font-size: 28px;
-              line-height: 28px;
-              color: #07111b;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              white-space: nowrap;
-            }
-
-            .desc {
-              width: 95%;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              white-space: nowrap;
-            }
-
-            .desc,
-            .sellCount {
-              padding-top: 16px;
-              font-size: 20px;
-              line-height: 20px;
-              color: #93999f;
-
-              span {
-                padding-left: 24px;
-
-                &:first-child {
-                  padding-left: 0;
-                }
-
-              }
-
-            }
-
-            .price {
-              padding-top: 8px;
-
-              .new {
-                font-size: 28px;
-                color: #f01414;
-                font-weight: normal;
-                line-height: 48px;
-              }
-
-              .old {
-                font-size: 20px;
-                color: #93999f;
-                font-weight: normal;
-                line-height: 48px;
-              }
-
-            }
-
+            height: 100%;
           }
 
-          .operate {
-            position: absolute;
-            right: 0;
-            bottom: 36px;
-            display: flex;
-            align-self: flex-end;
-            align-items: center;
-            line-height: 48px;
+        }
 
-            .iconfont {
-              font-size: 40px;
-              color: #00a0dc;
-            }
+        .txt {
+          width: 100%;
+          padding-left: 134px;
+          box-sizing: border-box;
+
+          .name {
+            width: 95%;
+            padding-top: 4px;
+            ;
+            font-size: 28px;
+            line-height: 28px;
+            color: #07111b;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+
+          .desc {
+            width: 95%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+
+          .desc,
+          .sellCount {
+            padding-top: 16px;
+            font-size: 20px;
+            line-height: 20px;
+            color: #93999f;
 
             span {
-              padding: 0 22px;
-              font-size: 20px;
-              color: #93999f;
+              padding-left: 24px;
+
+              &:first-child {
+                padding-left: 0;
+              }
+
             }
 
+          }
+
+          .price {
+            padding-top: 8px;
+
+            .new {
+              font-size: 28px;
+              color: #f01414;
+              font-weight: normal;
+              line-height: 48px;
+            }
+
+            .old {
+              font-size: 20px;
+              color: #93999f;
+              font-weight: normal;
+              line-height: 48px;
+            }
+
+          }
+
+        }
+
+        .operate {
+          position: absolute;
+          right: 0;
+          bottom: 36px;
+          display: flex;
+          align-self: flex-end;
+          align-items: center;
+          line-height: 48px;
+
+          .iconfont {
+            font-size: 40px;
+            color: #00a0dc;
+          }
+
+          span {
+            padding: 0 22px;
+            font-size: 20px;
+            color: #93999f;
           }
 
         }
@@ -332,5 +330,7 @@
     }
 
   }
+
+}
 
 </style>
