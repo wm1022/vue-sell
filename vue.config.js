@@ -9,12 +9,14 @@ function resolve (dir) {
 }
 
 module.exports = {
+  // 设置alias别名
   chainWebpack (config) {
     config.resolve.alias
       .set('components', resolve('src/components'))
       .set('common', resolve('src/common'))
       .set('api', resolve('src/api'))
   },
+  // 简单mock数据
   devServer: {
     before (app) {
       app.get('/api/seller', function (req, res) {

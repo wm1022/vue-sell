@@ -6,7 +6,7 @@ import Seller from './components/seller/seller'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -27,3 +27,13 @@ export default new Router({
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.length === 0) {
+    from.name ? next({ name: from.name }) : next('/') // 上一级路由正确匹配到，跳到上一级路由，否则跳到首页或者404页面
+  } else {
+    next()
+  }
+})
+
+export default router

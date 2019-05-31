@@ -3,20 +3,19 @@
 </template>
 
 <script>
-  export default {
-    props: {
-      'size': Number,
-      'type': Number
-    },
-    computed: {
-      // 计算属性动态添加class
-      iconCls() {
-        const classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee']
-        return `icon_${this.size} ${classMap[this.type]}`
-      }
+export default {
+  props: {
+    'size': Number,
+    'type': Number
+  },
+  computed: {
+    // 计算属性动态添加class
+    iconCls () {
+      const classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee']
+      return `icon_${this.size} ${classMap[this.type]}`
     }
   }
-
+}
 </script>
 
 <style lang="less" scoped>

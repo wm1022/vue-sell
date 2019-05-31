@@ -12,12 +12,12 @@
 </template>
 
 <script>
-import header from "./components/header/header"
-import {getSeller} from 'api'
+import header from './components/header/header'
+import { getSeller } from 'api'
 
 export default {
-  name: "app",
-  data() {
+  name: 'app',
+  data () {
     return {
       seller: {}
     }
@@ -33,11 +33,10 @@ export default {
     }
   },
   components: {
-    "v-header": header
+    'v-header': header
   }
-};
+}
 </script>
-
 <style lang="less" scoped>
 @import './common/style/index.less';
 #app {
@@ -45,11 +44,13 @@ export default {
   height: 100%;
 }
 .tab {
+  position: relative;
   display: flex;
   justify-content: space-around;
   align-items: center;
   height: 80px;
   .border-1px(bottom, rgba(7, 17, 27, .1));
+  z-index: 2;
 
   a {
     font-size:28px;
@@ -64,5 +65,3 @@ export default {
 
 }
 </style>
-
-
