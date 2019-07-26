@@ -44,8 +44,8 @@ export default {
 
     .star-item {
       display: inline-block;
-      width: 24px;
-      height: 24px;
+      width: 12px;
+      height: 12px;
 
       &.on {
         .bg-image('../../common/images/star24_on')
@@ -67,8 +67,8 @@ export default {
 
     .star-item {
       display: inline-block;
-      width: 36px;
-      height: 36px;
+      width: 18px;
+      height: 18px;
 
       &.on {
         .bg-image('../../common/images/star36_on')
@@ -90,9 +90,9 @@ export default {
 
     .star-item {
       display: inline-block;
-      width: 48px;
-      height: 48px;
-      margin: 0 25px;
+      width: 24px;
+      height: 24px;
+      margin: 0 12px;
 
       &.on {
         .bg-image('../../common/images/star48_on')

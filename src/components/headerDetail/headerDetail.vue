@@ -54,54 +54,53 @@ export default {
   height: 100%;
   top: 0;
   left: 0;
-  padding-top: 128px;
-  padding-bottom: 64px;
-  box-sizing: border-box;
   overflow: hidden;
+  z-index: 100;
   background-color: rgba(7, 17, 27, .8);
 
   .header-detail {
     height: 100%;
-    padding: 0 64px 0;
+    padding: 0 32px 0;
     overflow: auto;
     box-sizing: border-box;
 
     .content {
       min-height: 100%;
+      padding-top: 64px;
       padding-bottom: 64px;
       color: #fff;
       box-sizing: border-box;
 
       h3 {
-        font-size: 32px;
+        font-size: 16px;
         font-weight: 700;
-        line-height: 32px;
+        line-height: 16px;
         text-align: center;
       }
 
       .star-wrapper {
-        padding-top: 32px;
+        padding-top: 16px;
         text-align: center;
       }
 
       .item {
 
         .title {
-          padding-top: 56px;
+          padding-top: 28px;
           display: flex;
           align-items: center;
 
           i {
-            width: 240px;
+            width: 120px;
             .border-1px(top, rgba(255, 255, 255, .2));
           }
 
           span {
             flex-shrink: 0;
-            padding: 0 24px;
-            font-size: 28px;
+            padding: 0 12px;
+            font-size: 14px;
             font-weight: 700;
-            line-height: 28px;
+            line-height: 14px;
           }
 
         }
@@ -110,17 +109,17 @@ export default {
           li {
             display: flex;
             align-items: center;
-            padding-top: 24px;
+            padding-top: 12px;
 
             &:first-child {
-              padding-top: 48px;
+              padding-top: 24px;
             }
 
             .txt {
-              padding-left: 12px;
-              font-size: 24px;
+              padding-left: 6px;
+              font-size: 12px;
               font-weight: 200;
-              line-height: 24px;
+              line-height: 12px;
             }
 
           }
@@ -128,10 +127,10 @@ export default {
 
         &.bulletin {
           .txt {
-            padding-top: 48px;
-            font-size: 24px;
+            padding-top: 24px;
+            font-size: 12px;
             font-weight: 200;
-            line-height: 48px;
+            line-height: 24px;
           }
         }
 
@@ -144,7 +143,7 @@ export default {
       margin-top: -64px;
 
       .iconfont {
-        font-size: 64px;
+        font-size: 32px;
         color: rgba(255, 255, 255, .5)
       }
 

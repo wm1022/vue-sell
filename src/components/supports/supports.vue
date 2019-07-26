@@ -27,8 +27,8 @@ export default {
   vertical-align: -3px;
 
   &.icon_1 {
-    width: 24px;
-    height: 24px;
+    width: 12px;
+    height: 12px;
 
     &.decrease {
       .bg-image('../../common/images/decrease_1')
@@ -53,8 +53,8 @@ export default {
   }
 
   &.icon_2 {
-    width: 32px;
-    height: 32px;
+    width: 16px;
+    height: 16px;
 
     &.decrease {
       .bg-image('../../common/images/decrease_2')
@@ -79,8 +79,8 @@ export default {
   }
 
   &.icon_3 {
-    width: 24px;
-    height: 24px;
+    width: 12px;
+    height: 12px;
 
     &.decrease {
       .bg-image('../../common/images/decrease_3')
@@ -105,8 +105,8 @@ export default {
   }
 
   &.icon_4 {
-    width: 32px;
-    height: 32px;
+    width: 16px;
+    height: 16px;
 
     &.decrease {
       .bg-image('../../common/images/decrease_4')

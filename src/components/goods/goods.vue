@@ -4,10 +4,10 @@
       <ul class="menu">
         <li v-for="(good, index) in goods" :key="index" :class="{'current': currentIndex == index}"
           @click="selectMenu(index,$event)" ref="menuItem">
-          <p>
+          <span class="menu_item">
             <supports :size="1" :type="good.type" v-if="good.type!=-1"></supports>
             <span class="txt">{{good.name}}</span>
-          </p>
+          </span>
         </li>
       </ul>
     </div>
@@ -40,12 +40,12 @@
   </div>
 </template>
 <script>
-  import supports from 'components/supports/supports'
-  import BScroll from 'better-scroll'
-  import {
-    getGoods
-  } from 'api'
-  export default {
+import supports from 'components/supports/supports'
+import BScroll from 'better-scroll'
+import {
+  getGoods
+} from 'api'
+export default {
     name: 'goods',
     data() {
       return {
@@ -126,7 +126,6 @@
       supports
     }
   }
-
 </script>
 <style lang="less">
 @import "../../common/style/index.less";
@@ -134,30 +133,22 @@
 .goods {
   display: flex;
   position: absolute;
-  top: 0;
+  top: 174px;
+  bottom: 46px;
   width: 100%;
-  height: 100%;
-  padding-top: 349px;
-  padding-bottom: 92px;
-  box-sizing: border-box;
-  overflow: hidden;
-  z-index: 1;
 
   .menu-wrapper {
-    position: relative;
-    flex: 0 0 160px;
-    width: 160px;
+    flex: 0 0 80px;
     overflow: hidden;
-    z-index: 1;
 
     .menu {
 
       li {
         display: table;
-        width: 160px;
-        height: 108px;
-        padding: 0 24px;
-        font-size: 24px;
+        width: 80px;
+        height: 54px;
+        padding: 0 12px;
+        font-size: 12px;
         color: #666;
         box-sizing: border-box;
         background-color: #f3f5f7;
@@ -168,159 +159,145 @@
           background-color: #fff;
         }
 
-        p {
+        .menu_item {
           display: table-cell;
           vertical-align: middle;
-          line-height: 28px;
+          line-height: 14px;
           .border-1px(bottom, rgba(7, 17, 27, 0.1));
-        }
-
-        .icon {
-          float: left;
-          line-height: 28px;
-        }
-
-        .txt {
-          overflow: hidden;
-          line-height: 28px;
         }
       }
     }
 
   }
 
-}
-
-.foods-wrapper {
-  width: 100%;
-  margin-left: -160px;
-  padding-left: 160px;
-  box-sizing: border-box;
-  overflow: hidden;
-
-  .foods {
+  .foods-wrapper {
+    flex: 1;
+    box-sizing: border-box;
     overflow: hidden;
 
-    h4 {
-      padding: 15px 0 10px 28px;
-      font-size: 24px;
-      color: #93999f;
-      border-left: 4px solid #d9dde1;
-      background-color: #f3f5f7;
-    }
+    .foods {
 
-    ul {
-      padding: 0 36px;
-      background-color: #fff;
+      h4 {
+        padding: 7px 0 5px 14px;
+        font-size: 12px;
+        color: #93999f;
+        border-left: 2px solid #d9dde1;
+        background-color: #f3f5f7;
+      }
 
-      li {
-        position: relative;
-        display: flex;
-        padding: 36px 0;
-        .border-1px(bottom, rgba(7, 17, 27, .1));
+      ul {
+        padding: 0 18px;
+        background-color: #fff;
 
-        &:last-child {
-          &:after {
-            display: none;
-          }
-        }
+        li {
+          position: relative;
+          display: flex;
+          padding: 18px 0;
+          .border-1px(bottom, rgba(7, 17, 27, .1));
 
-        .pic {
-          position: absolute;
-          top: 36px;
-          left: 0px;
-          flex-shrink: 0;
-          width: 114px;
-          height: 114px;
-
-          img {
-            width: 100%;
-            height: 100%;
+          &:last-child {
+            &:after {
+              display: none;
+            }
           }
 
-        }
+          .pic {
+            // position: absolute;
+            // top: 18px;
+            // left: 0px;
+            flex-shrink: 0;
+            width: 57px;
+            height: 57px;
 
-        .txt {
-          width: 100%;
-          padding-left: 134px;
-          box-sizing: border-box;
+            img {
+              width: 100%;
+              height: 100%;
+            }
 
-          .name {
-            width: 95%;
-            padding-top: 4px;
-            ;
-            font-size: 28px;
-            line-height: 28px;
-            color: #07111b;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
           }
 
-          .desc {
-            width: 95%;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-          }
+          .txt {
+            flex: 1;
+            width: 80%;
+            padding-left: 10px;
+            box-sizing: border-box;
 
-          .desc,
-          .sellCount {
-            padding-top: 16px;
-            font-size: 20px;
-            line-height: 20px;
-            color: #93999f;
+            .name {
+              width: 95%;
+              margin-top: 2px;
+              font-size: 14px;
+              line-height: 14px;
+              color: #07111b;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+            }
 
-            span {
-              padding-left: 24px;
+            .desc {
+              width: 95%;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+            }
 
-              &:first-child {
-                padding-left: 0;
+            .desc,
+            .sellCount {
+              margin-top: 8px;
+              font-size: 10px;
+              color: #93999f;
+
+              span {
+                padding-left: 12px;
+
+                &:first-child {
+                  padding-left: 0;
+                }
+
+              }
+
+            }
+
+            .price {
+              margin-top: 4px;
+
+              .new {
+                font-size: 14px;
+                color: #f01414;
+                font-weight: normal;
+                line-height: 24px;
+              }
+
+              .old {
+                font-size: 10px;
+                color: #93999f;
+                font-weight: normal;
+                line-height: 24px;
               }
 
             }
 
           }
 
-          .price {
-            padding-top: 8px;
+          .operate {
+            position: absolute;
+            right: 0;
+            bottom: 18px;
+            display: flex;
+            align-self: flex-end;
+            align-items: center;
+            line-height: 24px;
 
-            .new {
-              font-size: 28px;
-              color: #f01414;
-              font-weight: normal;
-              line-height: 48px;
-            }
-
-            .old {
+            .iconfont {
               font-size: 20px;
-              color: #93999f;
-              font-weight: normal;
-              line-height: 48px;
+              color: #00a0dc;
             }
 
-          }
+            span {
+              padding: 0 11px;
+              font-size: 10px;
+              color: #93999f;
+            }
 
-        }
-
-        .operate {
-          position: absolute;
-          right: 0;
-          bottom: 36px;
-          display: flex;
-          align-self: flex-end;
-          align-items: center;
-          line-height: 48px;
-
-          .iconfont {
-            font-size: 40px;
-            color: #00a0dc;
-          }
-
-          span {
-            padding: 0 22px;
-            font-size: 20px;
-            color: #93999f;
           }
 
         }
@@ -332,5 +309,4 @@
   }
 
 }
-
 </style>

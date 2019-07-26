@@ -60,65 +60,62 @@ export default {
 .header {
   position: relative;
   overflow: hidden;
+  background-color: rgba(7, 17, 27, .5);
 
   .content-wrapper {
-    padding: 48px 24px 92px 48px;
-    background-color: rgba(7, 17, 27, .5);
-    .cf();
+    display: flex;
+    position: relative;
+    padding: 24px 12px 18px 24px;
 
     .avatar {
-      float: left;
-
       img {
-        width: 128px;
-        height: 128px;
-        border-radius: 4px;
+        width: 64px;
+        height: 64px;
+        border-radius: 2px;
       }
     }
 
     .info {
-      float: left;
+      padding: 2px 0 0 16px;
       color: #fff;
-      padding-left: 32px;
-      padding-top: 4px;
 
       .name {
         display: flex;
         align-items: center;
+        
         .brand {
-          display: inline-block;
-          width: 60px;
-          height: 36px;
+          width: 30px;
+          height: 18px;
           .bg-image('../../common/images/brand')
         }
 
         em {
-          padding-left: 12px;
-          font-size: 32px;
+          margin-left: 6px;
+          font-size: 16px;
           font-style: normal;
           font-weight: bold;
-          line-height: 36px;
+          line-height: 18px;
         }
 
       }
 
       .delivery {
-        padding-top: 16px;
-        font-size: 24px;
-        line-height: 24px;
+        margin-top: 8px;
+        font-size: 12px;
         font-weight: 200;
+        line-height: 12px;
       }
 
       .supports {
         display: flex;
         align-items: center;
-        padding-top: 20px;
-        font-size: 20px;
+        margin-top: 10px;
+        font-size: 10px;
         font-weight: 200;
-        line-height: 24px;
+        line-height: 12px;
 
         .text {
-          padding-left: 8px;
+          padding-left: 4px;
         }
 
       }
@@ -126,19 +123,21 @@ export default {
     }
 
     .supportsNum {
-      position: relative;
-      float: right;
-      font-size: 20px;
-      color: #fff;
+      display: flex;
+      align-items: center;
+      align-self: flex-end;
+      position: absolute;
+      right: 12px;
+      padding: 5px 8px;
+      font-size: 10px;
       font-weight: 200;
-      line-height: 24px;
-      padding: 14px 16px;
-      top: 85px;
-      border-radius: 48px;
+      color: #fff;
+      border-radius: 24px;
       background-color: rgba(0, 0, 0, .2);
 
       .iconfont {
-        padding-left: 4px;
+        padding-left: 2px;
+        color: #fff;
       }
 
     }
@@ -147,24 +146,23 @@ export default {
 
   .bulletin-wrapper {
     display: flex;
-    padding: 0 24px;
-    margin-top: -56px;
     align-items: center;
-    line-height: 56px;
+    padding: 0 12px;
+    line-height: 28px;
     background-color: rgba(7, 17, 27, .2);
 
     .media {
       flex-shrink: 0;
-      width: 44px;
-      height: 24px;
+      width: 22px;
+      height: 12px;
       .bg-image('../../common/images/bulletin');
     }
 
     .bulletin {
-      padding-left: 8px;
-      font-size: 20px;
-      color: #fff;
+      padding-left: 4px;
+      font-size: 10px;
       font-weight: 200;
+      color: #fff;
       .text-overflow();
     }
 
@@ -189,10 +187,6 @@ export default {
       height: 100%;
     }
 
-  }
-
-  .supportsNum .iconfont {
-    color: #fff;
   }
 
 }
