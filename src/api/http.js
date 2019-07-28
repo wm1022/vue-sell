@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const isProduction = process.env.NODE_ENV === 'production'
 
-const baseURL = isProduction ? 'http://192.168.1.136:8080' : 'http://192.168.1.136:8080' // 前者服务器接口，后者本地接口，配合proxy解决跨域问题
+const baseURL = isProduction ? 'http://localhost:8080/' : 'http://localhost:8080/' // 前者服务器接口，后者本地接口，配合proxy解决跨域问题
 
 axios.defaults.baseURL = baseURL
 

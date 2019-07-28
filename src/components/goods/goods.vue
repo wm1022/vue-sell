@@ -26,27 +26,33 @@
                 <p class="sellCount"><span>月售{{food.sellCount}}</span><span>好评率{{food.rating}}%</span></p>
                 <p class="price"><span class="new">￥{{food.price}}</span><span class="old"
                     v-if="food.oldPrice">￥{{food.oldPrice}}</span></p>
-              </div>
-              <div class="operate">
-                <i class="iconfont icon-remove_circle_outline"></i>
-                <span>1</span>
-                <i class="iconfont icon-add_circle"></i>
+                <cartControl :food="food"></cartControl>
               </div>
             </li>
           </ul>
         </div>
       </div>
     </div>
+    <div class="shopping-cart-wrapper">
+      <shoppingCart :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice" :selected-foods="selectedFoods"></shoppingCart>
+    </div>
   </div>
 </template>
 <script>
 import supports from 'components/supports/supports'
+import shoppingCart from 'components/shoppingCart/shoppingCart'
+import cartControl from 'components/cartControl/cartControl'
 import BScroll from 'better-scroll'
 import {
   getGoods
 } from 'api'
 export default {
     name: 'goods',
+    props: {
+      seller: {
+        type: Object
+      }
+    },
     data() {
       return {
         goods: [],
@@ -65,6 +71,17 @@ export default {
           }
         }
         return 0
+      },
+      selectedFoods: function () {
+        let foods = []
+        this.goods.forEach(function (good) {
+          good.foods.forEach(function (food) {
+            if (food.count) {
+              foods.push(food)
+            }
+          })
+        })
+        return foods
       }
     },
     created() {
@@ -87,6 +104,7 @@ export default {
         })
         this.foodsScroll = new BScroll(foodsWrapper, {
           probeType: 3,
+          click: true,
           mouseWheel: true
         })
         this.foodsScroll.on('scroll', (pos) => {
@@ -123,7 +141,9 @@ export default {
       }
     },
     components: {
-      supports
+      supports,
+      shoppingCart,
+      cartControl
     }
   }
 </script>
@@ -202,9 +222,6 @@ export default {
           }
 
           .pic {
-            // position: absolute;
-            // top: 18px;
-            // left: 0px;
             flex-shrink: 0;
             width: 57px;
             height: 57px;
@@ -276,26 +293,10 @@ export default {
 
             }
 
-          }
-
-          .operate {
-            position: absolute;
-            right: 0;
-            bottom: 18px;
-            display: flex;
-            align-self: flex-end;
-            align-items: center;
-            line-height: 24px;
-
-            .iconfont {
-              font-size: 20px;
-              color: #00a0dc;
-            }
-
-            span {
-              padding: 0 11px;
-              font-size: 10px;
-              color: #93999f;
+            .cart-control {
+              position: absolute;
+              right: 0;
+              bottom: 18px;
             }
 
           }
@@ -306,6 +307,13 @@ export default {
 
     }
 
+  }
+
+  .shopping-cart-wrapper {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
   }
 
 }

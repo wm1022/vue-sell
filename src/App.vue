@@ -6,7 +6,7 @@
       <router-link to="/ratings">评论</router-link>
       <router-link to="/seller">商家</router-link>
     </div>
-    <router-view></router-view>
+    <router-view :seller="seller"></router-view>
     <!-- <div class="footer">this is footer</div> -->
   </div>
 </template>
