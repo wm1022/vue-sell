@@ -50,7 +50,6 @@ export default {
   align-items: center;
   height: 40px;
   .border-1px(bottom, rgba(7, 17, 27, .1));
-  z-index: 2;
 
   a {
     font-size:14px;

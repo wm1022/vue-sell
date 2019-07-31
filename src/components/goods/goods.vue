@@ -34,7 +34,7 @@
       </div>
     </div>
     <div class="shopping-cart-wrapper">
-      <shoppingCart :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice" :selected-foods="selectedFoods"></shoppingCart>
+      <shoppingCart :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice" :selected-foods.sync="selectedFoods"></shoppingCart>
     </div>
   </div>
 </template>
@@ -153,7 +153,7 @@ export default {
 .goods {
   display: flex;
   position: absolute;
-  top: 174px;
+  top: 176px;
   bottom: 46px;
   width: 100%;
 

@@ -11,26 +11,34 @@
       <div class="delivery">另需配送费￥<span>{{deliveryPrice}}</span>元</div>
       <div class="pay" :class="payClass">{{payDesc}}</div>
     </div>
-    <div class="cart-list" v-show="openCartList">
+    <transition name="slide">
+      <div class="cart-list" v-show="listShow">
       <div class="title">
         <span class="name">购物车</span>
-        <span class="clear">清空</span>
+        <span class="clear" @click="clearCart">清空</span>
       </div>
-      <ul class="list">
-        <li v-for="(food, index) in selectedFoods" :key="index">
-          <span class="name">{{food.name}}</span>
-          <div class="right">
-            <span class="price"><small>￥</small>{{food.price}}</span>
-            <cartControl :food="food"></cartControl>
-          </div>
-        </li>
-      </ul>
+      <div class="list" ref="cartList">
+        <ul> 
+          <li v-for="(food, index) in selectedFoods" :key="index">
+            <span class="name">{{food.name}}</span>
+            <div class="right">
+              <span class="price"><small>￥</small>{{food.price}}</span>
+              <cartControl :food="food"></cartControl>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
+    </transition>
+    <transition name="fade">
+      <div class="overlay" v-show="listShow" @click="toggleCartList"></div>
+    </transition>
   </div>
 </template>
 
 <script>
 import cartControl from 'components/cartControl/cartControl'
+import BScroll from 'better-scroll'
 export default {
   name: 'shoppingCart',
   props: {
@@ -84,22 +92,34 @@ export default {
         return 'not-enough'
       }
     },
+    listShow: function () {
+      if (!this.openCartList) return false
+      this.$nextTick(() => {
+        if (!this.scroll) {
+          this.scroll = new BScroll(this.$refs.cartList, {
+            click: true
+          })
+        } else {
+          this.scroll.refresh()
+        }
+      })
+      if (!this.selectedCount) return false
+      return true
+    }
   },
-  watch: {
-    selectedCount () {
-      if (!this.selectedCount) {
-        this.openCartList = false
-      }
+  methods: {
+    toggleCartList () {
+      this.openCartList = !this.openCartList
+    },
+    clearCart () {
+      this.selectedFoods.forEach((food) => {
+        food.count = 0;
+      })
+      this.openCartList = false
     }
   },
   components: {
     cartControl
-  },
-  methods: {
-    toggleCartList () {
-      if (!this.selectedCount) return
-      this.openCartList = !this.openCartList
-    }
   }
 }
 </script>
@@ -252,9 +272,9 @@ export default {
 
     }
 
-    ul {
+    .list {
       height: 205px;
-      overflow-y: scroll;
+      overflow: hidden;
 
       li {
         display: flex;
@@ -299,6 +319,33 @@ export default {
 
     }
 
+  }
+
+  .slide-enter-active, .slide-leave-active {
+    transition: all .3s ease-in-out;
+  }
+
+  .slide-enter, .slide-leave-to {
+    bottom: -305px;
+  }
+
+  .fade-enter-active, .fade-leave-active {
+    transition: all .3s ease-in-out;
+  }
+
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(7, 17, 27, .6);
+    filter: blur(10px);
+    z-index: 3;
   }
   
 }
