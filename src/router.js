@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Goods from './components/goods/goods'
 import Ratings from './components/ratings/ratings'
 import Seller from './components/seller/seller'
+import Food from './components/food/food'
 
 Vue.use(Router)
 
@@ -24,6 +25,11 @@ const router = new Router({
       path: '/seller',
       name: 'seller',
       component: Seller
+    },
+    {
+      path: '/food',
+      name: 'food',
+      component: Food
     }
   ]
 })

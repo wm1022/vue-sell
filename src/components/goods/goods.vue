@@ -18,7 +18,7 @@
           <ul>
             <li v-for="(food, index) in good.foods" :key="index">
               <div class="pic">
-                <img :src="food.image" alt="">
+                <img :src="food.icon" alt="">
               </div>
               <div class="txt">
                 <p class="name">{{food.name}}</p>
