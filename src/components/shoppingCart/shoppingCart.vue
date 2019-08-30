@@ -13,22 +13,22 @@
     </div>
     <transition name="slide">
       <div class="cart-list" v-show="listShow">
-      <div class="title">
-        <span class="name">购物车</span>
-        <span class="clear" @click="clearCart">清空</span>
+        <div class="title">
+          <span class="name">购物车</span>
+          <span class="clear" @click="clearCart">清空</span>
+        </div>
+        <div class="list" ref="cartList">
+          <ul> 
+            <li v-for="(food, index) in selectedFoods" :key="index">
+              <span class="name">{{food.name}}</span>
+              <div class="right">
+                <span class="price"><small>￥</small>{{food.price}}</span>
+                <cartControl :food="food"></cartControl>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="list" ref="cartList">
-        <ul> 
-          <li v-for="(food, index) in selectedFoods" :key="index">
-            <span class="name">{{food.name}}</span>
-            <div class="right">
-              <span class="price"><small>￥</small>{{food.price}}</span>
-              <cartControl :food="food"></cartControl>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
     </transition>
     <transition name="fade">
       <div class="overlay" v-show="listShow" @click="toggleCartList"></div>
@@ -109,6 +109,7 @@ export default {
   },
   methods: {
     toggleCartList () {
+      if (!this.selectedCount) return
       this.openCartList = !this.openCartList
     },
     clearCart () {

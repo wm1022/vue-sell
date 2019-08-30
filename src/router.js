@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Goods from './components/goods/goods'
-import Ratings from './components/ratings/ratings'
-import Seller from './components/seller/seller'
+const Goods = () => import(/* webpackChunkName: "group-goods" */ './components/goods/goods')
+const Ratings = () => import(/* webpackChunkName: "group-seller" */ './components/ratings/ratings')
+const Seller = () => import(/* webpackChunkName: "group-seller" */ './components/seller/seller')
 
 Vue.use(Router)
 
