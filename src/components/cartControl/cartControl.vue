@@ -14,6 +14,10 @@ export default {
   props: {
     food: {
       type: Object
+    },
+    animate: {
+      default: false,
+      type: Boolean
     }
   },
   methods: {
@@ -23,6 +27,8 @@ export default {
       } else {
         this.food.count++
       }
+      //触发购物车小球动画
+      this.$emit('shoppingCartAnimate', event.target)
     },
     removeFood () {
       if (this.food.count > 0) {
@@ -63,5 +69,3 @@ export default {
 
 }
 </style>
-
-

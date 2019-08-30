@@ -32,6 +32,7 @@
     </transition>
   </div>
 </template>
+
 <script>
 import supports from 'components/supports/supports'
 import headerDetail from 'components/headerDetail/headerDetail'
@@ -54,6 +55,7 @@ export default {
   }
 }
 </script>
+
 <style lang="less" scoped>
 @import '../../common/style/index.less';
 
@@ -86,7 +88,7 @@ export default {
         .brand {
           width: 30px;
           height: 18px;
-          .bg-image('../../common/images/brand')
+          .bg-image('../../common/images/brand');
         }
 
         em {

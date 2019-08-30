@@ -28,6 +28,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import supports from 'components/supports/supports'
 import star from 'components/star/star'
@@ -45,6 +46,7 @@ export default {
   }
 }
 </script>
+
 <style lang="less" scoped>
 @import '../../common/style/index.less';
 

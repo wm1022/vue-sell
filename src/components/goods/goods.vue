@@ -26,7 +26,7 @@
                 <p class="sellCount"><span>月售{{food.sellCount}}</span><span>好评率{{food.rating}}%</span></p>
                 <p class="price"><span class="new">￥{{food.price}}</span><span class="old"
                     v-if="food.oldPrice">￥{{food.oldPrice}}</span></p>
-                <cartControl :food="food"></cartControl>
+                <cartControl :food="food" @shoppingCartAnimate="getElPos($event)"></cartControl>
               </div>
             </li>
           </ul>
@@ -34,10 +34,12 @@
       </div>
     </div>
     <div class="shopping-cart-wrapper">
-      <shoppingCart :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice" :selected-foods.sync="selectedFoods"></shoppingCart>
+      <shoppingCart ref="shoppingCart" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"
+        :selected-foods.sync="selectedFoods" :addBtnPos="addBtnPos"></shoppingCart>
     </div>
   </div>
 </template>
+
 <script>
 import supports from 'components/supports/supports'
 import shoppingCart from 'components/shoppingCart/shoppingCart'
@@ -47,106 +49,112 @@ import {
   getGoods
 } from 'api'
 export default {
-    name: 'goods',
-    props: {
-      seller: {
-        type: Object
-      }
-    },
-    data() {
-      return {
-        goods: [],
-        listHeight: [],
-        scrollY: 0
-      }
-    },
-    computed: {
-      currentIndex: function () {
-        for (let i = 0; i < this.listHeight.length; i++) {
-          let h1 = this.listHeight[i]
-          let h2 = this.listHeight[i + 1]
-          if (!h2 || (this.scrollY >= h1 && this.scrollY < h2)) {
-            this.followScroll(i)
-            return i
-          }
+  name: 'goods',
+  props: {
+    seller: {
+      type: Object
+    }
+  },
+  data () {
+    return {
+      goods: [],
+      listHeight: [],
+      scrollY: 0,
+      addBtnPos: 0
+    }
+  },
+  computed: {
+    currentIndex: function () {
+      for (let i = 0; i < this.listHeight.length; i++) {
+        let h1 = this.listHeight[i]
+        let h2 = this.listHeight[i + 1]
+        if (!h2 || (this.scrollY >= h1 && this.scrollY < h2)) {
+          this.followScroll(i)
+          return i
         }
-        return 0
-      },
-      selectedFoods: function () {
-        let foods = []
-        this.goods.forEach(function (good) {
-          good.foods.forEach(function (food) {
-            if (food.count) {
-              foods.push(food)
-            }
-          })
-        })
-        return foods
       }
+      return 0
     },
-    created() {
-      getGoods().then(goods => {
-        this.goods = goods
-        this.$nextTick(() => {
-          this.goodsScroll()
-          this.calculateHeight()
+    selectedFoods: function () {
+      let foods = []
+      this.goods.forEach(function (good) {
+        good.foods.forEach(function (food) {
+          if (food.count) {
+            foods.push(food)
+          }
         })
       })
+      return foods
+    }
+  },
+  created() {
+    getGoods().then(goods => {
+      this.goods = goods
+      this.$nextTick(() => {
+        this.goodsScroll()
+        this.calculateHeight()
+      })
+    })
+  },
+  methods: {
+    // 滚动
+    goodsScroll: function () {
+      const menuWrapper = this.$refs.menuWrapper
+      const foodsWrapper = this.$refs.foodsWrapper
+      this.menuScroll = new BScroll(menuWrapper, {
+        click: true,
+        mouseWheel: true
+      })
+      this.foodsScroll = new BScroll(foodsWrapper, {
+        probeType: 3,
+        click: true,
+        mouseWheel: true
+      })
+      this.foodsScroll.on('scroll', (pos) => {
+        if (pos.y <= 0) {
+          this.scrollY = Math.abs(Math.round(pos.y))
+        }
+      })
     },
-    methods: {
-      // 滚动
-      goodsScroll: function () {
-        const menuWrapper = this.$refs.menuWrapper
-        const foodsWrapper = this.$refs.foodsWrapper
-        this.menuScroll = new BScroll(menuWrapper, {
-          click: true,
-          mouseWheel: true
-        })
-        this.foodsScroll = new BScroll(foodsWrapper, {
-          probeType: 3,
-          click: true,
-          mouseWheel: true
-        })
-        this.foodsScroll.on('scroll', (pos) => {
-          if (pos.y <= 0) {
-            this.scrollY = Math.abs(Math.round(pos.y))
-          }
-        })
-      },
-      // 计算右侧每个区间高度
-      calculateHeight: function () {
-        const foods_item = this.$refs.foodsItem
-        let height = 0
+    // 计算右侧每个区间高度
+    calculateHeight: function () {
+      const foodsItem = this.$refs.foodsItem
+      let height = 0
+      this.listHeight.push(height)
+      for (let i = 0; i < foodsItem.length; i++) {
+        const item = foodsItem[i]
+        height += item.offsetHeight
         this.listHeight.push(height)
-        for (let i = 0; i < foods_item.length; i++) {
-          const item = foods_item[i]
-          height += item.offsetHeight
-          this.listHeight.push(height)
-        }
-      },
-      // 点击菜单
-      selectMenu: function (index, event) {
-        if (!event._constructed) {
-          return
-        }
-        const foodsItem = this.$refs.foodsItem
-        const el = foodsItem[index]
-        this.foodsScroll.scrollToElement(el, 300)
-      },
-      // 菜单跟随滚动
-      followScroll: function (i) {
-        const menuItem = this.$refs.menuItem
-        const el = menuItem[i]
-        this.menuScroll.scrollToElement(el, 300, -100)
       }
     },
-    components: {
-      supports,
-      shoppingCart,
-      cartControl
+    // 点击菜单
+    selectMenu: function (index, event) {
+      if (!event._constructed) {
+        return
+      }
+      const foodsItem = this.$refs.foodsItem
+      const el = foodsItem[index]
+      this.foodsScroll.scrollToElement(el, 300)
+    },
+    // 菜单跟随滚动
+    followScroll: function (i) {
+      const menuItem = this.$refs.menuItem
+      const el = menuItem[i]
+      this.menuScroll.scrollToElement(el, 300, -100)
+    },
+    // 点击添加时计算点击的元素距离屏幕的位置
+    getElPos: function (el) {
+      this.$refs.shoppingCart.dropDown(el)
     }
+  },
+  components: {
+    supports,
+    shoppingCart,
+    cartControl
   }
+}
 </script>
+
 <style lang="less">
 @import "../../common/style/index.less";
 

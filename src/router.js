@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 const Goods = () => import(/* webpackChunkName: "group-goods" */ './components/goods/goods')
+const Food = () => import(/* webpackChunkName: "group-seller" */ './components/food/food')
 const Ratings = () => import(/* webpackChunkName: "group-seller" */ './components/ratings/ratings')
 const Seller = () => import(/* webpackChunkName: "group-seller" */ './components/seller/seller')
 
