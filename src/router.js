@@ -24,6 +24,11 @@ const router = new Router({
       path: '/seller',
       name: 'seller',
       component: Seller
+    },
+    {
+      path: '/food',
+      name: 'food',
+      component: Food
     }
   ]
 })
