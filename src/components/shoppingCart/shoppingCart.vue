@@ -136,9 +136,6 @@ export default {
       this.listShow = true
     }
   },
-  created () {
-
-  },
   methods: {
     toggleCartList () {
       if (!this.selectedCount) return
@@ -165,31 +162,33 @@ export default {
     },
     beforeEnter (el) {
       // el为小球
-      let count = this.balls.length;
+      let count = this.balls.length
       while (count--) {
-        let ball = this.balls[count];
+        let ball = this.balls[count]
         if (ball.show) {
-          let rect = ball.el.getBoundingClientRect();
-          let x = rect.left - 32;
-          let y = -(window.innerHeight - rect.top - 22);
-          el.style.display = '';
-          el.style.webkitTransform = `translate3d(0,${y}px,0)`;
-          el.style.transform = `translate3d(0,${y}px,0)`;
-          let inner = el.querySelector('.inner');
-          inner.style.webkitTransform = `translate3d(${x}px,0,0)`;
-          inner.style.transform = `translate3d(${x}px,0,0)`;
+          let rect = ball.el.getBoundingClientRect()
+          let x = rect.left - 32
+          let y = -(window.innerHeight - rect.top - 22)
+          el.style.display = ''
+          el.style.webkitTransform = `translate3d(0,${y}px,0)`
+          el.style.transform = `translate3d(0,${y}px,0)`
+          let inner = el.querySelector('.inner')
+          inner.style.webkitTransform = `translate3d(${x}px,0,0)`
+          inner.style.transform = `translate3d(${x}px,0,0)`
+          // inner.style.opacity = 1
         }
       }
     },
     enter (el, done) {
       let rf = el.offsetHeight;
       this.$nextTick(() => {
-        el.style.webkitTransform = 'translate3d(0,0,0)';
-        el.style.transform = 'translate3d(0,0,0)';
-        let inner = el.querySelector('.inner');
-        inner.style.webkitTransform = 'translate3d(0,0,0)';
-        inner.style.transform = 'translate3d(0,0,0)';
-        el.addEventListener('transitionend', done);
+        el.style.webkitTransform = 'translate3d(0,0,0)'
+        el.style.transform = 'translate3d(0,0,0)'
+        let inner = el.querySelector('.inner')
+        inner.style.webkitTransform = 'translate3d(0,0,0)'
+        inner.style.transform = 'translate3d(0,0,0)'
+        // inner.style.opacity = 0
+        el.addEventListener('transitionend', done) // transitionend 事件在css transition结束后触发
       });
     },
     afterEnter (el) {
@@ -209,7 +208,11 @@ export default {
 <style lang="less">
 @import "../../common/style/index.less";
 .shopping-cart {
-  position: relative;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 100;
 
   .cart-content {
 

@@ -16,7 +16,7 @@
         <div class="item" ref="foodsItem" v-for="(good, index) in goods" :key="index">
           <h4>{{good.name}}</h4>
           <ul>
-            <li v-for="(food, index) in good.foods" :key="index">
+            <li v-for="(food, index) in good.foods" :key="index" @click="foodDetailShow(food)">
               <div class="pic">
                 <img :src="food.icon" alt="">
               </div>
@@ -37,6 +37,9 @@
       <shoppingCart ref="shoppingCart" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"
         :selected-foods.sync="selectedFoods" :addBtnPos="addBtnPos"></shoppingCart>
     </div>
+    <transition name="move">
+      <food v-show="showFoodDetail" :selectedFood="selectedFood" :showFoodDetail.sync="showFoodDetail"></food>
+    </transition>
   </div>
 </template>
 
@@ -44,6 +47,7 @@
 import supports from 'components/supports/supports'
 import shoppingCart from 'components/shoppingCart/shoppingCart'
 import cartControl from 'components/cartControl/cartControl'
+import food from 'components/food/food'
 import BScroll from 'better-scroll'
 import {
   getGoods
@@ -60,7 +64,9 @@ export default {
       goods: [],
       listHeight: [],
       scrollY: 0,
-      addBtnPos: 0
+      addBtnPos: 0,
+      showFoodDetail: false,
+      selectedFood: {}
     }
   },
   computed: {
@@ -145,12 +151,17 @@ export default {
     // 点击添加时计算点击的元素距离屏幕的位置
     getElPos: function (el) {
       this.$refs.shoppingCart.dropDown(el)
+    },
+    foodDetailShow: function (food) {
+      this.selectedFood = food
+      this.showFoodDetail = true
     }
   },
   components: {
     supports,
     shoppingCart,
-    cartControl
+    cartControl,
+    food
   }
 }
 </script>
@@ -317,11 +328,12 @@ export default {
 
   }
 
-  .shopping-cart-wrapper {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
+  .move-enter, .move-leave-to {
+    transform: translate3d(100%, 0, 0);
+  }
+
+  .move-enter-active, .move-leave-active {
+    transition: all .3s ease-in-out;
   }
 
 }
