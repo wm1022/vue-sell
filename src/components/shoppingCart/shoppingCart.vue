@@ -64,8 +64,7 @@ export default {
       default: () => {
         return []
       }
-    },
-    addBtnPos: {}
+    }
   },
   data () {
     return {
@@ -418,7 +417,7 @@ export default {
     }
 
     .fade-enter-active, .fade-leave-active {
-      transition: all .3s ease-in-out;
+      transition: all .2s ease-in-out;
     }
 
     .fade-enter, .fade-leave-to {

@@ -35,7 +35,7 @@
     </div>
     <div class="shopping-cart-wrapper">
       <shoppingCart ref="shoppingCart" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"
-        :selected-foods.sync="selectedFoods" :addBtnPos="addBtnPos"></shoppingCart>
+        :selected-foods.sync="selectedFoods"></shoppingCart>
     </div>
     <transition name="move">
       <food v-show="showFoodDetail" :selectedFood="selectedFood" :showFoodDetail.sync="showFoodDetail"></food>
@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import supports from 'components/supports/supports'
 import shoppingCart from 'components/shoppingCart/shoppingCart'
 import cartControl from 'components/cartControl/cartControl'
@@ -70,6 +71,10 @@ export default {
     }
   },
   computed: {
+		...mapState({
+      // selectedFoods: state => state.shopCart.shopCart,
+      goods: state => state.goods.goods
+    }),
     currentIndex: function () {
       for (let i = 0; i < this.listHeight.length; i++) {
         let h1 = this.listHeight[i]
@@ -90,12 +95,36 @@ export default {
           }
         })
       })
+      // 將foods存入store中
+      // this.$store.commit('setShopCart', foods)
       return foods
     }
   },
+  // watch: {
+  //   goods: {
+  //     deep: true, 
+  //     handler () {
+  //       console.log(this.goods)
+  //       let foods = []
+  //       this.goods.forEach(function (good) {
+  //         good.foods.forEach(function (food) {
+  //           if (food.count) {
+  //             foods.push(food)
+  //           }
+  //         })
+  //       })
+  //     // 將foods存入store中
+  //     this.$store.commit('setShopCart', foods)
+  //     console.log(this.$store.state.shopCart)
+  //     }
+  //   }
+  // },
   created() {
     getGoods().then(goods => {
-      this.goods = goods
+      // this.goods = goods
+      // 将goods存入store
+      this.$store.commit('setGoods', goods)
+      // 设置滚动
       this.$nextTick(() => {
         this.goodsScroll()
         this.calculateHeight()

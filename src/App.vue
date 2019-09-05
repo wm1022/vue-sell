@@ -14,6 +14,7 @@
 <script>
 import header from './components/header/header'
 import { getSeller } from 'api'
+// import { mapState } from 'vuex'
 
 export default {
   name: 'app',
@@ -29,6 +30,8 @@ export default {
     _getSeller: function () {
       getSeller().then((seller) => {
         this.seller = seller
+        // 将商家信息存入vuex中
+        this.$store.commit('setSeller', seller)
       })
     }
   },
@@ -37,11 +40,15 @@ export default {
   }
 }
 </script>
-<style lang="less" scoped>
+<style lang="less">
 @import './common/style/index.less';
+html, body {
+  height: 100%;
+}
 #app {
   position: relative;
   height: 100%;
+  z-index: 10;
 }
 .tab {
   position: relative;
@@ -50,6 +57,7 @@ export default {
   align-items: center;
   height: 40px;
   .border-1px(bottom, rgba(7, 17, 27, .1));
+  z-index: 10;
 
   a {
     font-size:14px;

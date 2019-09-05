@@ -57,7 +57,7 @@ export default {
   top: 0;
   left: 0;
   overflow: hidden;
-  z-index: 100;
+  z-index: 120;
   background-color: rgba(7, 17, 27, .8);
 
   .header-detail {
