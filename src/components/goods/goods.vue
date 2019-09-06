@@ -71,10 +71,10 @@ export default {
     }
   },
   computed: {
-		...mapState({
-      // selectedFoods: state => state.shopCart.shopCart,
-      goods: state => state.goods.goods
-    }),
+		// ...mapState({
+    //   // selectedFoods: state => state.shopCart.shopCart,
+    //   goods: state => state.goods.goods
+    // }),
     currentIndex: function () {
       for (let i = 0; i < this.listHeight.length; i++) {
         let h1 = this.listHeight[i]
@@ -121,7 +121,7 @@ export default {
   // },
   created() {
     getGoods().then(goods => {
-      // this.goods = goods
+      this.goods = goods
       // 将goods存入store
       this.$store.commit('setGoods', goods)
       // 设置滚动
