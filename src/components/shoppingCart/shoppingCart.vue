@@ -37,11 +37,11 @@
     </div>
     <div class="ball-content">
       <div v-for="(item, index) in balls" :key="index">
-        <transition v-on:before-enter="beforeEnter" v-on:enter="enter" v-on:after-enter="afterEnter">
-        <div class="ball" v-show="item.show">
-          <span class="inner">1</span>
-        </div>
-      </transition>
+        <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
+          <div class="ball" v-show="item.show">
+            <span class="inner">1</span>
+          </div>
+        </transition>
       </div>
     </div>
   </div>
@@ -77,7 +77,7 @@ export default {
         {show: false},
         {show: false}
       ],
-      dropBall: []
+      dropBalls: []
     }
   },
   computed: {
@@ -150,51 +150,51 @@ export default {
     dropDown (el) {
       // el为添加按钮
       for (let i = 0; i < this.balls.length; i++) {
-        let ball = this.balls[i]
+        let ball = this.balls[i];
         if (!ball.show) {
-          ball.show = true
-          ball.el = el
-          this.dropBall.push(ball)
-          return
+          ball.show = true;
+          ball.el = el;
+          this.dropBalls.push(ball);
+          return;
         }
       }
     },
     beforeEnter (el) {
+      console.log(22)
       // el为小球
-      let count = this.balls.length
+      let count = this.balls.length;
       while (count--) {
-        let ball = this.balls[count]
+        let ball = this.balls[count];
         if (ball.show) {
-          let rect = ball.el.getBoundingClientRect()
-          let x = rect.left - 32
-          let y = -(window.innerHeight - rect.top - 22)
-          el.style.display = ''
-          el.style.webkitTransform = `translate3d(0,${y}px,0)`
-          el.style.transform = `translate3d(0,${y}px,0)`
-          let inner = el.querySelector('.inner')
-          inner.style.webkitTransform = `translate3d(${x}px,0,0)`
-          inner.style.transform = `translate3d(${x}px,0,0)`
-          // inner.style.opacity = 1
+          let rect = ball.el.getBoundingClientRect();
+          let x = rect.left - 32;
+          let y = -(window.innerHeight - rect.top - 22);
+          el.style.display = '';
+          el.style.webkitTransform = `translate3d(0,${y}px,0)`;
+          el.style.transform = `translate3d(0,${y}px,0)`;
+          let inner = el.getElementsByClassName('inner')[0];
+          inner.style.webkitTransform = `translate3d(${x}px,0,0)`;
+          inner.style.transform = `translate3d(${x}px,0,0)`;
         }
       }
     },
     enter (el, done) {
+      /* eslint-disable no-unused-vars */
       let rf = el.offsetHeight;
       this.$nextTick(() => {
-        el.style.webkitTransform = 'translate3d(0,0,0)'
-        el.style.transform = 'translate3d(0,0,0)'
-        let inner = el.querySelector('.inner')
-        inner.style.webkitTransform = 'translate3d(0,0,0)'
-        inner.style.transform = 'translate3d(0,0,0)'
-        // inner.style.opacity = 0
-        el.addEventListener('transitionend', done) // transitionend 事件在css transition结束后触发
+        el.style.webkitTransform = 'translate3d(0,0,0)';
+        el.style.transform = 'translate3d(0,0,0)';
+        let inner = el.getElementsByClassName('inner')[0];
+        inner.style.webkitTransform = 'translate3d(0,0,0)';
+        inner.style.transform = 'translate3d(0,0,0)';
+        el.addEventListener('transitionend', done);
       });
     },
     afterEnter (el) {
-      let ball = this.dropBall.shift()
+      let ball = this.dropBalls.shift();
       if (ball) {
-        ball.show = false
-        el.style.display = 'none'
+        ball.show = false;
+        el.style.display = 'none';
       }
     }
   },
@@ -438,11 +438,11 @@ export default {
   }
 
   .ball-content {
-    position: fixed;
-    left: 36px;
-    bottom: 25px;
 
     .ball {
+      position: fixed;
+      left: 36px;
+      bottom: 25px;
       transition: all .4s cubic-bezier(.6,-0.18,.8,.65);
 
       .inner {
