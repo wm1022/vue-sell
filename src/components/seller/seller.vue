@@ -65,9 +65,6 @@
         </ul>
       </div>
     </div>
-    <div class="shopping-cart-wrapper">
-      <shoppingCart ref="shoppingCart" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice" :selected-foods.sync="selectedFoods"></shoppingCart>
-    </div>
   </div>
 </template>
 
@@ -76,7 +73,6 @@ import { mapState } from 'vuex'
 import star from 'components/star/star'
 import split from 'components/split/split'
 import supports from 'components/supports/supports'
-import shoppingCart from 'components/shoppingCart/shoppingCart'
 import BScroll from 'better-scroll'
 import { formatDate } from 'common/js/formatDate'
 export default {
@@ -132,8 +128,7 @@ export default {
   components: {
     split,
     star,
-    supports,
-    shoppingCart
+    supports
   }
 }
 </script>
@@ -143,7 +138,7 @@ export default {
 .seller {
   position: absolute;
   top: 174px;
-  bottom: 46px;
+  bottom: 0;
   left: 0;
   width: 100%;
   overflow: hidden;

@@ -72,8 +72,8 @@ export default {
   },
   computed: {
 		// ...mapState({
-    //   // selectedFoods: state => state.shopCart.shopCart,
-    //   goods: state => state.goods.goods
+    //   selectedFoods: state => state.shopCart.shopCart,
+    //   // goods: state => state.goods.goods
     // }),
     currentIndex: function () {
       for (let i = 0; i < this.listHeight.length; i++) {
@@ -100,30 +100,11 @@ export default {
       return foods
     }
   },
-  // watch: {
-  //   goods: {
-  //     deep: true, 
-  //     handler () {
-  //       console.log(this.goods)
-  //       let foods = []
-  //       this.goods.forEach(function (good) {
-  //         good.foods.forEach(function (food) {
-  //           if (food.count) {
-  //             foods.push(food)
-  //           }
-  //         })
-  //       })
-  //     // 將foods存入store中
-  //     this.$store.commit('setShopCart', foods)
-  //     console.log(this.$store.state.shopCart)
-  //     }
-  //   }
-  // },
   created() {
     getGoods().then(goods => {
       this.goods = goods
       // 将goods存入store
-      this.$store.commit('setGoods', goods)
+      // this.$store.commit('setGoods', goods)
       // 设置滚动
       this.$nextTick(() => {
         this.goodsScroll()

@@ -128,7 +128,7 @@ export default {
 .ratings {
 	position: absolute;
 	top: 176px;
-	bottom: 46px;
+	bottom: 0;
 	left: 0;
 	width: 100%;
 	overflow: hidden;
