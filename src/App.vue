@@ -6,7 +6,11 @@
       <router-link to="/ratings">评论</router-link>
       <router-link to="/seller">商家</router-link>
     </div>
-    <router-view :seller="seller"></router-view>
+    <transition :name="slideDirection">
+      <keep-alive>
+        <router-view :seller="seller"></router-view>
+      </keep-alive>
+    </transition>
     <!-- <div class="footer">this is footer</div> -->
   </div>
 </template>
@@ -20,7 +24,26 @@ export default {
   name: 'app',
   data () {
     return {
-      seller: {}
+      seller: {},
+      slideDirection: 'slide-to-left'
+    }
+  },
+  watch: {
+    '$route'(to, from) {
+      // 同级路由间进行跳转，根据路由元信息设定的层级，判断左滑还是右滑
+      if (to.meta.level > from.meta.level) {
+        this.slideDirection = 'slide-to-left'
+        return
+      } else {
+        this.slideDirection = 'slide-to-right'
+        return
+      }
+      // 根据是否返回上一页，使用不同滑动
+      if (this.$router.options.isGoBack) {
+        this.slideDirection = 'slide-to-right'
+      } else {
+        this.slideDirection = 'slide-to-left'
+      }
     }
   },
   created () {
@@ -70,5 +93,27 @@ html, body {
 
   }
 
+}
+.slide-to-left-enter, .slide-to-left-leave-to {
+  opacity: 0;
+  transform: translate3d(100%, 0, 0);
+}
+.slide-to-left-leave-active {
+  -webkit-transform: translate(-20%, 0);
+  transform: translate(-20%, 0);
+}
+.slide-to-left-enter-active, .slide-to-left-leave-active {
+  transition: all .3s ease-in-out;
+}
+.slide-to-right-enter, .slide-to-right-leave-to {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0);
+}
+.slide-to-right-leave-active {
+  -webkit-transform: translate(-20%, 0);
+  transform: translate(20%, 0);
+}
+.slide-to-right-enter-active, .slide-to-right-leave-active {
+  transition: all .3s ease-in-out;
 }
 </style>
