@@ -22,7 +22,7 @@
       </div>
       <split v-show="selectedFood.info"></split>
       <div class="intro" v-show="selectedFood.info">
-        <p class="title">商品介绍</p>
+        <p class="title">商品介绍33333333</p>
         <p class="txt">{{selectedFood.info}}</p>
       </div>
       <split v-show="selectedFood.ratings"></split>
@@ -194,7 +194,7 @@ export default {
         font-size: 14px;
         color: rgb(240, 20, 20);
       }
-        
+
       .old {
         text-decoration: line-through;
         font-size: 10px;
@@ -223,7 +223,7 @@ export default {
       background: rgb(0, 160, 220);
       opacity: 1;
     }
-    
+
     .fade-enter, .fade-leave-to {
       opacity: 0;
     }
@@ -231,7 +231,7 @@ export default {
     .fade-enter-active, .fade-leave-active {
       transition: all .3s ease-in-out;
     }
-        
+
   }
 
   .intro {
@@ -282,20 +282,20 @@ export default {
               font-size: 10px;
               color: rgb(147, 153, 159);
             }
-              
+
             .avatar {
               border-radius: 50%;
             }
-              
+
           }
-            
+
           .time {
             margin-bottom: 6px;
             line-height: 12px;
             font-size: 10px;
             color: rgb(147, 153, 159);
           }
-            
+
           .text {
             line-height: 16px;
             font-size: 12px;
@@ -305,21 +305,21 @@ export default {
               line-height: 16px;
               font-size: 12px;
             }
-              
+
             .icon-thumb_up {
               color: rgb(0, 160, 220);
             }
-              
+
             .icon-thumb_down {
               color: rgb(147, 153, 159);
             }
-              
+
           }
-            
+
         }
-          
-    } 
-        
+
+    }
+
 
 
   }
